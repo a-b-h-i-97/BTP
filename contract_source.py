@@ -36,7 +36,6 @@ contract Agreement {
     function () public payable designeronly {
         require(msg.value >= amount, "Cannot credit an amount less than agreed upon amount");
 
-        amount = msg.value;
         emit Credit(msg.sender,amount,QUANTITY,quantityRemaining);
         
     }
