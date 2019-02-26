@@ -1,16 +1,17 @@
 from solc import compile_source
 from web3 import Web3
+import os
 
-import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
-
-from contract_source import contract_sc
-
-provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
-w3 = Web3(provider)
 
 def view_products():
-    compiled_sol = compile_source(contract_sc)
+
+    provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
+    w3 = Web3(provider)
+    
+    with open('../contracts/Agreement.sol', 'r') as source_file:
+        contract_source = source_file.read()
+
+    compiled_sol = compile_source(contract_source)
     contract_interface = compiled_sol['<stdin>:Agreement']
 
     w3.eth.defaultAccount = w3.eth.accounts[0]

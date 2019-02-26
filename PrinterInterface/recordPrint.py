@@ -1,17 +1,16 @@
 from solc import compile_source
 from web3 import Web3
 import getpass
-
-import sys, os
-sys.path.append(os.path.join(os.path.dirname(__file__), "../"))
-
-from contract_source import contract_sc
+import os
 
 def record_print():
     provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../PrintNode/geth.ipc'))
     w3 = Web3(provider)
 
-    compiled_sol = compile_source(contract_sc)
+    with open('../contracts/Agreement.sol', 'r') as source_file:
+        contract_source = source_file.read()
+
+    compiled_sol = compile_source(contract_source)
     contract_interface = compiled_sol['<stdin>:Agreement']
 
     w3.eth.defaultAccount = w3.eth.accounts[0]
