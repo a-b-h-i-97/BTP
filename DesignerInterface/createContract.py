@@ -1,12 +1,10 @@
 from solc import compile_source
 from web3 import Web3
 import getpass
-import os
 
-def printer_friendly_contract():
-    provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
-    w3 = Web3(provider)
 
+def printer_friendly_contract(provider, w3):
+    
     with open('../contracts/Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()
 
@@ -39,10 +37,7 @@ def printer_friendly_contract():
     
     return
 
-def designer_friendly_contract():
-
-    provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
-    w3 = Web3(provider)
+def designer_friendly_contract(provider, w3):
 
     with open('../contracts/Design_Friendly_Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()

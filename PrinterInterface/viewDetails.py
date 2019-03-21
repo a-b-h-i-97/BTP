@@ -1,10 +1,7 @@
 from solc import compile_source
 from web3 import Web3
-import os
 
-def view_Details():
-    provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../PrintNode/geth.ipc'))
-    w3 = Web3(provider)
+def view_Details(provider, w3):
 
     print("\nEnter 1 for Printer Friendly Contract")
     print("Enrer 2 for Designer Friendly Contract")

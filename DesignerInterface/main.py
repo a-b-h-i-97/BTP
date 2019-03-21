@@ -2,6 +2,11 @@ import createContract
 import creditAmount
 import viewProducts
 import approveOrFail
+import os
+from web3 import Web3
+
+provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
+w3 = Web3(provider)
 
 print("\nWelcome to the designer interface\n")
 
@@ -18,15 +23,15 @@ while(choice != 6):
     choice = int(input("\nEnter your choice : "))
 
     if (choice == 1):
-        createContract.printer_friendly_contract()
+        createContract.printer_friendly_contract(provider, w3)
     elif (choice == 2):
-        createContract.designer_friendly_contract()
+        createContract.designer_friendly_contract(provider, w3)
     elif (choice == 3):
-        creditAmount.credit_amount()
+        creditAmount.credit_amount(provider, w3)
     elif (choice == 4):
-        viewProducts.view_products()
+        viewProducts.view_products(provider, w3)
     elif (choice == 5):
-        approveOrFail.approve_or_fail()
+        approveOrFail.approve_or_fail(provider, w3)
     elif (choice == 6):
         print("Exiting")
     else:

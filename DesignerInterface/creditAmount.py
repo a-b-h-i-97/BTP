@@ -1,11 +1,9 @@
 from solc import compile_source
 from web3 import Web3
 import getpass
-import os
 
-def credit_amount():
-    provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
-    w3 = Web3(provider)
+
+def credit_amount(provider, w3):
 
     with open('../contracts/Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()
