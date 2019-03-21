@@ -33,11 +33,13 @@ def credit_amount():
         tx_hash = Agreement.fallback().transact({'value': credit_amount})
 
     except ValueError:
-        print("Unauthorized or insufficient credit amount")
+        print("Something went wrong. The amount could not be credited")
         return
 
+    w3.miner.start(1)
     print("Waiting for transaction to be mined...")
     w3.eth.waitForTransactionReceipt(tx_hash)
+    w3.miner.stop()
 
     print("Amount credited successfully!!")
     print("Transaction hash: ", Web3.toHex(tx_hash))

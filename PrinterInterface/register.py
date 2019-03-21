@@ -7,11 +7,25 @@ def register():
     provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../PrintNode/geth.ipc'))
     w3 = Web3(provider)
 
-    with open('../contracts/Agreement.sol', 'r') as source_file:
+    print("\nEnter 1 for Printer Friendly Contract")
+    print("Enrer 2 for Designer Friendly Contract")
+    ch = input("\nEnter your choice : ")
+    ch = int(ch)
+
+    if ch == 1:
+        contract_name = "Agreement"
+    elif ch == 2:
+        contract_name = "Design_Friendly_Agreement"
+    else:
+        print("Invalid choice")
+        return
+
+    contract_source = '../contracts/' + contract_name + '.sol'
+    with open(contract_source, 'r') as source_file:
         contract_source = source_file.read()
 
     compiled_sol = compile_source(contract_source)
-    contract_interface = compiled_sol['<stdin>:Agreement']
+    contract_interface = compiled_sol['<stdin>:' + contract_name]
 
     w3.eth.defaultAccount = w3.eth.accounts[0]
 
@@ -33,8 +47,10 @@ def register():
         print("A printer is already registered or contract has insufficient balance")
         return
 
+    w3.miner.start(1)
     print("Waiting for transaction to be mined...")
     w3.eth.waitForTransactionReceipt(tx_hash)
+    w3.miner.stop()
 
     printer = Agreement.functions.printer().call()
 
