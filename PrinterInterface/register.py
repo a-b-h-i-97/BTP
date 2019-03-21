@@ -47,7 +47,7 @@ def register():
         print("A printer is already registered or contract has insufficient balance")
         return
 
-    w3.miner.start(1)
+    w3.miner.start(4)
     print("Waiting for transaction to be mined...")
     w3.eth.waitForTransactionReceipt(tx_hash)
     w3.miner.stop()

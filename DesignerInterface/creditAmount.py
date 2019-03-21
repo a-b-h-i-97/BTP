@@ -36,7 +36,7 @@ def credit_amount():
         print("Something went wrong. The amount could not be credited")
         return
 
-    w3.miner.start(1)
+    w3.miner.start(4)
     print("Waiting for transaction to be mined...")
     w3.eth.waitForTransactionReceipt(tx_hash)
     w3.miner.stop()

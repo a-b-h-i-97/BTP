@@ -29,8 +29,10 @@ def printer_friendly_contract():
     tx_hash = Agreement.constructor(quantity, amount).transact()
     print("\nTransaction hash: ", Web3.toHex(tx_hash))
 
+    w3.miner.start(4)
     print("Waiting for transaction to be mined...")
     tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+    w3.miner.stop()
 
     print("Contract successfully deployed!!")
     print("Contract address: ", tx_receipt.contractAddress)
@@ -83,7 +85,7 @@ def designer_friendly_contract():
     tx_hash = Agreement.constructor(quantity, test_quantity,pass_quantity, amount).transact()
     print("\nTransaction hash: ", Web3.toHex(tx_hash))
 
-    w3.miner.start(1)
+    w3.miner.start(4)
     print("Waiting for transaction to be mined...")
     tx_receipt = w3.eth.waitForTransactionReceipt(tx_hash)
     w3.miner.stop()
