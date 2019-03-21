@@ -1,4 +1,5 @@
 *.pyc
+.vscode/
 DesignNode/
 PrintNode/
 testChain/
