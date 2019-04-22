@@ -9,6 +9,7 @@ rope = "*"
 [packages]
 py-solc = "*"
 web3 = "*"
+py-essentials = "*"
 
 [requires]
 python_version = "3.5"
