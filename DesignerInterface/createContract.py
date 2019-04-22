@@ -3,7 +3,7 @@ from web3 import Web3
 import getpass
 
 
-def printer_friendly_contract(provider, w3):
+def printer_friendly_contract(w3):
     
     with open('../contracts/Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()
@@ -37,7 +37,7 @@ def printer_friendly_contract(provider, w3):
     
     return
 
-def designer_friendly_contract(provider, w3):
+def designer_friendly_contract(w3):
 
     with open('../contracts/Design_Friendly_Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()

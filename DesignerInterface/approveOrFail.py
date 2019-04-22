@@ -2,7 +2,7 @@ from solc import compile_source
 from web3 import Web3
 import getpass
 
-def approve_or_fail(provider, w3):
+def approve_or_fail(w3):
 
     with open('../contracts/Design_Friendly_Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()

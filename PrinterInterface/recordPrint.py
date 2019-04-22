@@ -2,7 +2,7 @@ from solc import compile_source
 from web3 import Web3
 import getpass
 
-def record_print(provider, w3):
+def record_print(w3):
     
     print("\nEnter 1 for Printer Friendly Contract")
     print("Enrer 2 for Designer Friendly Contract")

@@ -3,7 +3,7 @@ from web3 import Web3
 import getpass
 import os
 
-def register(provider, w3):
+def register(w3):
 
     print("\nEnter 1 for Printer Friendly Contract")
     print("Enrer 2 for Designer Friendly Contract")

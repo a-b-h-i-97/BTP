@@ -1,7 +1,7 @@
 from solc import compile_source
 from web3 import Web3
 
-def view_Details(provider, w3):
+def view_Details(w3):
 
     print("\nEnter 1 for Printer Friendly Contract")
     print("Enrer 2 for Designer Friendly Contract")

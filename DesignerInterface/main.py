@@ -23,15 +23,15 @@ while(choice != 6):
     choice = int(input("\nEnter your choice : "))
 
     if (choice == 1):
-        createContract.printer_friendly_contract(provider, w3)
+        createContract.printer_friendly_contract(w3)
     elif (choice == 2):
-        createContract.designer_friendly_contract(provider, w3)
+        createContract.designer_friendly_contract(w3)
     elif (choice == 3):
-        creditAmount.credit_amount(provider, w3)
+        creditAmount.credit_amount(w3)
     elif (choice == 4):
-        viewProducts.view_products(provider, w3)
+        viewProducts.view_products(w3)
     elif (choice == 5):
-        approveOrFail.approve_or_fail(provider, w3)
+        approveOrFail.approve_or_fail(w3)
     elif (choice == 6):
         print("Exiting")
     else:

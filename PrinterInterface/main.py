@@ -22,13 +22,13 @@ while(choice != 5):
     choice = int(input("\nEnter your choice : "))
 
     if (choice == 1):
-        verifyContract.verify_contract(provider, w3)
+        verifyContract.verify_contract(w3)
     elif (choice == 2):
-        viewDetails.view_Details(provider, w3)
+        viewDetails.view_Details(w3)
     elif (choice == 3):
-        register.register(provider, w3)
+        register.register(w3)
     elif (choice == 4):
-        recordPrint.record_print(provider, w3)
+        recordPrint.record_print(w3)
     elif (choice == 5):
         print("Exiting")
     else:

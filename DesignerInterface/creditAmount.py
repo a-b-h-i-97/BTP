@@ -3,7 +3,7 @@ from web3 import Web3
 import getpass
 
 
-def credit_amount(provider, w3):
+def credit_amount(w3):
 
     with open('../contracts/Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()
