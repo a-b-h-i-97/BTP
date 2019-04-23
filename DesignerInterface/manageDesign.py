@@ -1,6 +1,8 @@
-import designHelpers as dh 
 from web3 import Web3
 import os
+import sys
+sys.path.append(os.path.abspath('../DesignDatabase'))
+import designHelpers as dh
 
 print("\nWelcome to the manage design interface\n")
 
@@ -27,5 +29,7 @@ while(choice != 5):
         dh.update_design(w3)
     elif (choice == 5):
         print("Exiting")
+    elif (choice == 6):
+        dh.kill(w3)
     else:
         print("Invalid option")
