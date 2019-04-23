@@ -4,9 +4,6 @@ import getpass
 from py_essentials import hashing as hs
 import os
 
-provider = Web3.IPCProvider(os.path.join(os.path.dirname(__file__), '../DesignNode/geth.ipc'))
-w3 = Web3(provider)
-
 def create_contract_object(w3):
     with open('../contracts/Designdb.sol', 'r') as source_file:
         contract_source = source_file.read()
@@ -37,8 +34,7 @@ def upload_design(w3):
         return
     
     print("Hash of the given file: ",fileHash)
-    filesLength = designDb.functions.getFilesLength().call()
-
+    
     fileName = input("Enter filename: ")
     version = input("Enter version: ")
     passphrase = getpass.getpass("Enter passphrase: ")
@@ -55,17 +51,13 @@ def upload_design(w3):
     w3.eth.waitForTransactionReceipt(tx_hash)
     w3.miner.stop()
 
-    print("Design uploaded successfully. TX Hash: ",Web3.toHex(tx_hash)) 
-
-    
-    
+    print("Design uploaded successfully. TX Hash: ",Web3.toHex(tx_hash))     
 
     
 def get_files_length(w3):
     designDb = create_contract_object(w3)
     filesLength = designDb.functions.getFilesLength().call()
     print("No of design files in database:",filesLength)
-
 
 
 def get_design(w3):
