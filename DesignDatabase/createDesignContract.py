@@ -21,6 +21,7 @@ def create_contract():
 
     w3.personal.unlockAccount(w3.eth.accounts[0], passphrase)
 
+    w3.miner.start(4)
     tx_hash = Agreement.constructor().transact()
     print("\nTransaction hash: ", Web3.toHex(tx_hash))
 
@@ -29,6 +30,8 @@ def create_contract():
 
     print("Contract successfully deployed!!")
     print("Contract address: ", tx_receipt.contractAddress)
+    with open('contract_address','w') as file:
+        file.write(tx_receipt.contractAddress)
     
     return
 

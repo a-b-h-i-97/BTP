@@ -34,12 +34,9 @@ contract DesignDB is owned,mortal{
     DesignFile[] public files;
 
     function addDesign(string fileName,string fileHash, string version) public
-    {
+    {//require instead of if
         int i = findDesign(fileHash);
-        if(i != -1)
-        {
-            return;
-        }
+        require(i == -1, "File with same hash should not exist in db");
         fileVersion memory v = fileVersion(fileHash,version,now);
         files.length++;
         DesignFile storage f = files[files.length-1];
