@@ -9,7 +9,7 @@ def verify_contract(w3):
     ch = int(ch)
 
     if ch == 1:
-        contract_name = "Agreement"
+        contract_name = "Print_Friendly_Agreement"
     elif ch == 2:
         contract_name = "Design_Friendly_Agreement"
     else:

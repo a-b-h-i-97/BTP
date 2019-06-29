@@ -1,6 +1,6 @@
 pragma solidity >=0.4.22 < 0.6.0;
 
-contract Agreement {
+contract Print_Friendly_Agreement {
 
     address public designer;
     address public printer;
@@ -32,13 +32,6 @@ contract Agreement {
         require(msg.value >= amount, "Cannot credit an amount less than agreed upon amount");
         printer = msg.sender;
     }
-
-    // function registerPrinter() public {
-    //     require(printer == msg.sender, "This agreement already has a printer");
-    //     require(address(this).balance >= amount, "Insufficient balance in contract account");
-        
-    //     printer = msg.sender;
-    // }
 
     function recordPrint(string designid) public {
         require(quantityRemaining > 0, "No more copies can be authenticated");

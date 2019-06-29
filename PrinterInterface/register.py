@@ -11,7 +11,7 @@ def register(w3):
     ch = int(ch)
 
     if ch == 1:
-        contract_name = "Agreement"
+        contract_name = "Print_Friendly_Agreement"
         print("The contract amount will be deducted from your account")
     elif ch == 2:
         contract_name = "Design_Friendly_Agreement"

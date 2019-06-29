@@ -5,11 +5,11 @@ import getpass
 
 def printer_friendly_contract(w3):
     
-    with open('../contracts/Agreement.sol', 'r') as source_file:
+    with open('../contracts/Print_Friendly_Agreement.sol', 'r') as source_file:
         contract_source = source_file.read()
 
     compiled_sol = compile_source(contract_source)
-    contract_interface = compiled_sol['<stdin>:Agreement']
+    contract_interface = compiled_sol['<stdin>:Print_Friendly_Agreement']
 
     w3.eth.defaultAccount = w3.eth.accounts[0]
 
