@@ -12,6 +12,7 @@ def register(w3):
 
     if ch == 1:
         contract_name = "Agreement"
+        print("The contract amount will be deducted from your account")
     elif ch == 2:
         contract_name = "Design_Friendly_Agreement"
     else:
@@ -39,10 +40,17 @@ def register(w3):
     )
 
     try:
-        tx_hash = Agreement.functions.registerPrinter().transact()
+        if ch == 1:
+            credit_amount = Agreement.functions.amount().call()
+            tx_hash = Agreement.fallback().transact({'value': credit_amount})
+        else:
+            tx_hash = Agreement.functions.registerPrinter().transact()
 
     except ValueError:
-        print("A printer is already registered or contract has insufficient balance")
+        if ch == 1:
+            print("A printer is already registered or you have insufficient balance")
+        else:
+            print("A printer is already registered or contract has insufficient balance")
         return
 
     w3.miner.start(4)

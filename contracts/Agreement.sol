@@ -9,41 +9,36 @@ contract Agreement {
     uint public quantityRemaining;
     uint public amount;
     Product[] public products;
-    
+
     struct Product {
         string id;
         uint time;
     }
 
-    event Credit(address designer,uint amount,uint quantity,uint q_remain);
-    event Debit(address designer,uint amount,uint quantity,uint q_remain);
-
     constructor (uint _QUANTITY, uint _amount) public {
         designer = msg.sender;
         QUANTITY = _QUANTITY;
         quantityRemaining = _QUANTITY;
-        amount = _amount;        
+        amount = _amount;
     }
-
-    modifier designeronly() {require(msg.sender==designer, "Only creator is authorized to do this operation"); _;}
 
     function getBalance() public view returns (uint256) {
         return address(this).balance;
     }
-    
-    function () public payable designeronly {
-        require(msg.value >= amount, "Cannot credit an amount less than agreed upon amount");
 
-        emit Credit(msg.sender, msg.value, QUANTITY, quantityRemaining);
-        
-    }
-
-    function registerPrinter() public {
+    // This function is called when a printer registers
+    function () public payable {
         require(printer == 0x0, "This agreement already has a printer");
-        require(address(this).balance >= amount, "Insufficient balance in contract account");
-        
+        require(msg.value >= amount, "Cannot credit an amount less than agreed upon amount");
         printer = msg.sender;
     }
+
+    // function registerPrinter() public {
+    //     require(printer == msg.sender, "This agreement already has a printer");
+    //     require(address(this).balance >= amount, "Insufficient balance in contract account");
+        
+    //     printer = msg.sender;
+    // }
 
     function recordPrint(string designid) public {
         require(quantityRemaining > 0, "No more copies can be authenticated");
@@ -53,9 +48,7 @@ contract Agreement {
 
         products[products.length++] = Product({id:designid, time:block.timestamp});
         if (quantityRemaining==0) {
-            printer.transfer(amount);
+            designer.transfer(amount);
         }
-
-        emit Debit(printer,amount,QUANTITY,quantityRemaining);        
     }
 }
